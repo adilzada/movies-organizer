@@ -18,7 +18,7 @@ class Favorites extends Component {
                         return <li key={item.id}>{item.title} ({item.year})</li>;
                     })}
                 </ul>
-                <button type="button" className="favorites__save">Сохранить список</button>
+                <button type="button" className="favorites__save">Siyahını yadda saxla</button>
             </div>
         );
     }
