@@ -1,30 +1,26 @@
 import React, { Component } from 'react';
 import './SearchBox.css';
-import { connect } from 'react-redux';
-import { fetchFilms, changingSearchLine } from '../../redux/actions';
-
-
 
 class SearchBox extends Component {
-
-    searchLineChangeHandler = (event) => {
-        this.props.changeSearchLine(event.target.value)
+    state = {
+        searchLine: ''
     }
-
+    searchLineChangeHandler = (e) => {
+        this.setState({ searchLine: e.target.value });
+    }
     searchBoxSubmitHandler = (e) => {
         e.preventDefault();
-        this.props.fetchListFilms(this.props.searchLine, this.props.apiKey);
     }
-
     render() {
+        const { searchLine } = this.state;
 
         return (
             <div className="search-box">
                 <form className="search-box__form" onSubmit={this.searchBoxSubmitHandler}>
                     <label className="search-box__form-label">
-                        Search movie by title:
+                        Искать фильм по названию:
                         <input
-                            value={this.props.searchLine}
+                            value={searchLine}
                             type="text"
                             className="search-box__form-input"
                             placeholder="Например, Shawshank Redemption"
@@ -34,25 +30,14 @@ class SearchBox extends Component {
                     <button
                         type="submit"
                         className="search-box__form-submit"
-                        disabled={!this.props.searchLine}
+                        disabled={!searchLine}
                     >
-                        Search
+                        Искать
                     </button>
                 </form>
             </div>
         );
     }
 }
-
-const mapStateToProps = (state) => {
-    return {
-        searchLine: state.searchLine, apiKey: state.apiKey, 
-    }
- }
-
- const mapDispatchToProps = dispatch => ({
-    fetchListFilms: (searchLine, apiKey) => dispatch(fetchFilms(searchLine, apiKey)),
-    changeSearchLine: (searchLine) => dispatch(changingSearchLine(searchLine))
-  });
-
-  export default connect(mapStateToProps, mapDispatchToProps)(SearchBox);
+ 
+export default SearchBox;
