@@ -1,32 +1,37 @@
-import {
-  ADD_MOVIE_TO_LIST,
-  REMOVE_MOVIE_TO_LIST,
-  FILTER_MOVIES,
-  SET_LINKACTIVE,
-} from "../actions/actions-type";
+const initState = {
+    movies: [],
+    listMovies: [],
+  };
 
-const initialState = {
-  listMovies: [],
-  movies: [],
-  linkActive: false,
-};
-
-export default (state = initialState, { type, payload }) => {
-  switch (type) {
-    case FILTER_MOVIES:
-      return { ...state, movies: payload };
-    case ADD_MOVIE_TO_LIST:
-      const movie = state.movies.find((item) => item.imdbID === payload);
-      const listMovies = [...state.listMovies, { ...movie }];
-      return { ...state, listMovies };
-    case REMOVE_MOVIE_TO_LIST:
-      const newListMovies = state.listMovies.filter(
-        (item) => item.imdbID !== payload
+  const reducer = (state = initState, action)  => {
+    switch (action.type) {
+      case "ADD_TO_MOVIE": 
+      const newMovie = state.movies.find(
+        (item) => item.imdbID === action.payload.id
       );
-      return { ...state, listMovies: newListMovies };
-    case SET_LINKACTIVE:
-      return { ...state, linkActive: payload };
-    default:
-      return state;
-  }
-};
+      const listMovies = [...state.listMovies, { ...newMovie }];
+      return {
+        ...state,
+        listMovies,
+      };
+
+      case "REMOVE_TO_MOVIE":
+        const filterMovie = state.listMovies.filter((item) => item.imdbID !== action.payload.id);
+        return {
+          ...state,
+          listMovies: filterMovie,
+        };
+
+      case "ADD_MOVIES":
+        
+        return {
+          ...state,
+          movies: [...action.payload.movies],
+        };
+        default:
+          return state;
+    }
+ 
+  } 
+
+  export default reducer

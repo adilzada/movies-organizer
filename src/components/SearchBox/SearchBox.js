@@ -1,67 +1,63 @@
-import React, { Component } from "react";
-import { addFilterMovies, getMovieList } from "../../redux/actions/actions";
+import React, { Component} from 'react';
+import './SearchBox.css';
+import { addMovies } from "../../redux/actions/action";
 import { connect } from "react-redux";
 
-import "./SearchBox.css";
-
 class SearchBox extends Component {
-  state = {
-    searchLine: "",
-  };
-  searchLineChangeHandler = (e) => {
-    this.setState({ searchLine: e.target.value });
-  };
-  searchBoxSubmitHandler = (e) => {
-    e.preventDefault();
-  };
-
-  render() {
-    const { addFilterMovies } = this.props;
-    const { searchLine } = this.state;
-    return (
-      <div className="search-box">
-        <form
-          className="search-box__form"
-          onSubmit={this.searchBoxSubmitHandler}
-        >
-          <label className="search-box__form-label">
-            Искать фильм по названию:
-            <input
-              type="text"
-              className="search-box__form-input"
-              placeholder="Например, Shawshank Redemption"
-              onChange={this.searchLineChangeHandler}
-            />
-          </label>
-          <button
-            type="submit"
-            className="search-box__form-submit"
-            onClick={() =>
-              getMovieList(searchLine)
-                .then((res) => {
-                  addFilterMovies(res);
-                })
-                .catch((err) => {
-                  addFilterMovies([]);
-                  return err;
-                })
-            }
-            disabled={!searchLine}
-          >
-            Искать
-          </button>
-        </form>
-      </div>
-    );
-  }
+    state = {
+        searchLine: ''
+    }
+    searchLineChangeHandler = (e) => {
+        this.setState({ searchLine: e.target.value });
+    }
+    searchBoxSubmitHandler = (e) => {
+        e.preventDefault();
+        let searchText = this.state.searchLine;
+        const key= "1a2e85d5"
+        fetch(`http://www.omdbapi.com/?s=${searchText}&apikey=${key}`)
+        .then((res)=>res.json())
+        .then((data)=>{
+            console.log(data.Search)
+            this.props.dispatch(addMovies(data.Search))
+        })
+        .catch(error=>{
+            alert("movie not found")
+        })
+    };
+    render() {
+       
+        const { searchLine } = this.state;
+        
+        return (
+            <div className="search-box">
+                <form className="search-box__form" onSubmit={this.searchBoxSubmitHandler}>
+                    <label className="search-box__form-label">
+                    Search movie by title:
+                        <input 
+                            value={searchLine}
+                            type="text"
+                            className="search-box__form-input"
+                            placeholder="For example Raya and the last dragon "
+                            onChange={this.searchLineChangeHandler}
+                        />
+                    </label>
+                    <button
+                        type="submit"
+                        className="search-box__form-submit"
+                        disabled={!searchLine}
+                    >
+                        Search 
+                    </button>
+                </form>
+            </div>
+        );
+    }
 }
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    addFilterMovies: (movies) => {
-      dispatch(addFilterMovies(movies));
-    },
+ 
+const mapStateToProps = (state) => {
+    return {
+      movies: state.movies,
+    };
   };
-};
-
-export default connect(null, mapDispatchToProps)(SearchBox);
+  
+  export default connect(mapStateToProps)(SearchBox);
