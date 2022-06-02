@@ -17,6 +17,8 @@ class MovieItem extends Component{
                 type="button"
                 className="movie-item__add-button"
                 onClick={() => addMovie(imdbID)}
+                // onClick={myFunction()=>
+                // }
                 disabled={disabled}>
                 
                 Add To List ✔
