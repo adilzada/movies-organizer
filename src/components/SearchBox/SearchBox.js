@@ -37,7 +37,7 @@ class SearchBox extends Component {
                             value={searchLine}
                             type="text"
                             className="search-box__form-input"
-                            placeholder="For example Raya and the last dragon "
+                            placeholder="example Sherlock Holmes "
                             onChange={this.searchLineChangeHandler}
                         />
                     </label>

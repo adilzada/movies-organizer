@@ -18,8 +18,10 @@
 .MoviesList{
     display: flex;
     width: 93%;
+    border-radius: 9px;
     height: 200px;
-    background-color:#158862;
+    background-color:gray;
+    margin-bottom: 3px;
     padding: 25px 14px 20px 19px;
 }
 .MoviesList img{
@@ -55,7 +57,7 @@
         flex-direction: column;
         width: 93%;
         height: auto !important;
-        background-color: greenyellow;
+        background-color: gray;
         padding: 25px 14px 20px 19px;
         text-align: center;
     }

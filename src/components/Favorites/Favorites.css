@@ -20,7 +20,7 @@
 
 .favorites__save {
     border: none;
-    background-color: #158862;
+    background-color: blue;
     padding: 10px 15px;
     color: #FFEEDB;
     font-size: 14px;
@@ -30,10 +30,11 @@
 .favorites__save:hover {
     cursor: pointer;
     opacity: 0.9;
-    transition: all 0.2s linear;
+    transition: all 0.3s linear;
 }
 .favorites__save:disabled{
-    background-color: #adcd9e;
+    background-color: gray;
+    border-radius: 15px;
 }
 .link__none {
     display: none;

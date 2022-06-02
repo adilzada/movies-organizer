@@ -22,10 +22,11 @@
 .search-box__form-submit {
     margin-top: 17px;
     padding: 5px 10px;
-    border: none;
-    transition: all 0.2s linear;
+    border-radius: 15px;
+    transition: all 0.4s linear;
     color: #FFEEDB;
-    background-color: #158862;
+    border: none;
+    background-color: blue;
 }
 
 .search-box__form-submit:hover:not(:disabled) {

@@ -19,7 +19,7 @@ class MovieItem extends Component{
                 onClick={() => addMovie(imdbID)}
                 disabled={disabled}>
                 
-                Add To List 🍿
+                Add To List ✔
               </button>
             </div>
           </article>
