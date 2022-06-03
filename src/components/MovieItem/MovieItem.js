@@ -4,7 +4,14 @@ import {connect} from "react-redux"
 import {addToMovie} from "../../redux/actions/action";
 
 class MovieItem extends Component{
+  state={
+    textValue:"Add To List"
+  }
+  show=()=>{
+    this.setState({textValue:'Added'})
+  }
     render(){
+      const { textValue } = this.state;
         const {Title,Poster,Year,imdbID,addMovie,disabled}=this.props
         return(
             <article className="movie-item">
@@ -16,12 +23,13 @@ class MovieItem extends Component{
               <button
                 type="button"
                 className="movie-item__add-button"
-                onClick={() => addMovie(imdbID)}
-                // onClick={myFunction()=>
-                // }
-                disabled={disabled}>
+                onClick={() => {
+                  addMovie(imdbID);
+                  this.show()
+                }}
                 
-                Add To List ✔
+                disabled={disabled}>
+                {textValue}
               </button>
             </div>
           </article>

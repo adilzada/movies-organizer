@@ -52,7 +52,10 @@ class Favorites extends Component {
             return (
               <li className="favorites__list--item" key={item.imdbID}>
                 <p className="favorites__list--title">{item.Title} {item.Year}</p>
-                <button className="favorites__list--delete" onClick={() => this.props.removeMovie(item.imdbID)}>X</button>
+                <button className="favorites__list--delete" onClick={
+                () =>{this.props.removeMovie(item.imdbID)
+                
+                }}>X</button>
               </li>
             );
           })}
@@ -72,13 +75,16 @@ class Favorites extends Component {
 const mapStateToProps = (state) => {
   return {
     listMovies: state.listMovies,
+    textChange:state.textChange
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     removeMovie: (id) => dispatch(removeToMovie(id)),
+    
   };
 };
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(Favorites);

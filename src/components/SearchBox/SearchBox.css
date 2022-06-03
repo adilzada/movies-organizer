@@ -33,7 +33,7 @@
     opacity: 0.8;
     cursor: pointer;
     transition: all 0.2s linear;
-    background-color: #095a3f;
+    background-color: gray;
     color: rgb(255, 255, 255);
 }
 
@@ -46,5 +46,9 @@
         display: inline-block;
         font-size: 12px;
         margin-left: -60px;
+        /* display: flex; */
+    }
+    .search-box__form-input{
+       width: 150px;
     }
 }
