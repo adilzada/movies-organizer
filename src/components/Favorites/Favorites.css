@@ -54,7 +54,7 @@
   }
   .link__block:hover{
       cursor: pointer;
-      background-color: blue;
+      /* background-color: blue; */
   }
   .favorites__list--item{
     display: flex;

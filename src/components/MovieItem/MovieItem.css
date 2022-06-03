@@ -47,7 +47,7 @@
     }
     .movie-item__add-button{
         background-color: gray;
-        width: 40%;
+        width: 60px;
         height: 20%;
     }
     .movie-item__add-button:hover{

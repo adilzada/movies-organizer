@@ -25,7 +25,6 @@ class ListPage extends Component {
               })
           })
         })
-        // TODO: запросы к серверу по всем imdbID
     }
     render() { 
         return (

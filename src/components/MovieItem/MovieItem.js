@@ -5,7 +5,6 @@ import {addToMovie} from "../../redux/actions/action";
 
 class MovieItem extends Component{
   
-
   ifIdInFavorites = (imdbID) => {
     const active = this.props.listMovies.find((item) => {
       return item.imdbID === imdbID;
