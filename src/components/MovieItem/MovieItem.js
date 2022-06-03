@@ -4,15 +4,19 @@ import {connect} from "react-redux"
 import {addToMovie} from "../../redux/actions/action";
 
 class MovieItem extends Component{
-  state={
-    textValue:"Add To List"
-  }
-  show=()=>{
-    this.setState({textValue:'Added'})
-  }
+  
+
+  ifIdInFavorites = (imdbID) => {
+    const active = this.props.listMovies.find((item) => {
+      return item.imdbID === imdbID;
+    });
+    if (active) {
+      return true;
+    }
+  };
+
     render(){
-      const { textValue } = this.state;
-        const {Title,Poster,Year,imdbID,addMovie,disabled}=this.props
+        const {Title,Poster,Year,imdbID,addMovie}=this.props
         return(
             <article className="movie-item">
             <img className="movie-item__poster" src={Poster} alt={Title} />
@@ -25,16 +29,20 @@ class MovieItem extends Component{
                 className="movie-item__add-button"
                 onClick={() => {
                   addMovie(imdbID);
-                  this.show()
                 }}
-                
-                disabled={disabled}>
-                {textValue}
+               disabled={this.ifIdInFavorites(imdbID)}
+          >
+            {this.ifIdInFavorites(imdbID) ? "Added" : "Add to List"}
               </button>
             </div>
           </article>
         )
     }
+}
+const mapStateToProps = (state) => {
+  return {
+    listMovies : state.listMovies
+  }
 }
 
 const mapDispatchToProps = (dispatch) => {
@@ -43,4 +51,4 @@ const mapDispatchToProps = (dispatch) => {
     };
   };
   
-  export default connect(null, mapDispatchToProps)(MovieItem);
+  export default connect(mapStateToProps, mapDispatchToProps)(MovieItem);
