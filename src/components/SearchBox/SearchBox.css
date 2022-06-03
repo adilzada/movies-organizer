@@ -26,14 +26,14 @@
     transition: all 0.4s linear;
     color: #FFEEDB;
     border: none;
-    background-color: blue;
+    background-color: gray;
 }
 
 .search-box__form-submit:hover:not(:disabled) {
     opacity: 0.8;
     cursor: pointer;
     transition: all 0.2s linear;
-    background-color: gray;
+    background-color: blue;
     color: rgb(255, 255, 255);
 }
 

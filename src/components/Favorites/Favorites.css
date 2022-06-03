@@ -20,17 +20,19 @@
 
 .favorites__save {
     border: none;
-    background-color: blue;
+    background-color: gray;
     padding: 10px 15px;
     color: #FFEEDB;
     font-size: 14px;
     transition: all 0.2s linear;
 }
 
+
 .favorites__save:hover {
     cursor: pointer;
     opacity: 0.9;
     transition: all 0.3s linear;
+    background-color: blue;
 }
 .favorites__save:disabled{
     background-color: gray;
@@ -44,11 +46,15 @@
     padding: 5px 7px;
     display: block;
     color: rgb(255 255 255);
-    background-color: #0f6f4f;
+    background-color: gray;
     width: 70px;
     border-radius: 30px;
     font-size: 16px;
     text-decoration: none;
+  }
+  .link__block:hover{
+      cursor: pointer;
+      background-color: blue;
   }
   .favorites__list--item{
     display: flex;
@@ -64,7 +70,8 @@
         box-sizing: border-box;
         border: 1px solid rgba(0, 8, 7);
         padding: 30px 20px;
-        width: 300px;
+        margin: 7px;
+        width: 250px;
         right: 10px;
         
     }
